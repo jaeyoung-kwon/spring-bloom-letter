@@ -10,7 +10,7 @@ interface NavigationProps {
 
 const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
   return (
-    <nav className="glass-strong rounded-3xl p-6 mb-8 organic-shadow">
+    <nav className="bg-white border border-gray-200 rounded-3xl p-6 mb-8 shadow-lg">
       <div className="flex items-center justify-between">
         {/* 로고 */}
         <div className="flex items-center gap-4">
@@ -18,7 +18,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
             <span className="text-white font-bold text-xl">봄</span>
           </div>
           <div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">봄봄</h1>
+            <h1 className="text-2xl font-bold text-primary">봄봄</h1>
             <p className="text-sm text-muted-foreground font-medium">당신의 하루에 찾아오는 작은 설렘</p>
           </div>
         </div>

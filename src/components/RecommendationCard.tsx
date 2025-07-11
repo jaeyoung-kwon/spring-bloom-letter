@@ -28,9 +28,9 @@ const RecommendationCard = ({
   onSubscribe
 }: RecommendationCardProps) => {
   return (
-    <div className="glass-card rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl group">
+    <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 hover:shadow-xl group shadow-lg">
       {/* 이미지 영역 */}
-      <div className="h-40 coral-gradient relative overflow-hidden">
+      <div className="h-40 bg-primary relative overflow-hidden">
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
         ) : (
@@ -41,11 +41,11 @@ const RecommendationCard = ({
           </div>
         )}
         <div className="absolute top-3 left-3">
-          <Badge className="bg-white/90 text-primary text-xs font-medium">
+          <Badge className="bg-white text-primary text-xs font-medium border border-gray-200">
             {category}
           </Badge>
         </div>
-        <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 rounded-full px-2 py-1">
+        <div className="absolute top-3 right-3 flex items-center gap-1 bg-white rounded-full px-2 py-1 border border-gray-200">
           <Star className="w-3 h-3 text-yellow-500 fill-current" />
           <span className="text-xs font-medium text-gray-700">{rating}</span>
         </div>

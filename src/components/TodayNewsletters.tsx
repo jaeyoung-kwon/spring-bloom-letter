@@ -75,9 +75,8 @@ const TodayNewsletters = () => {
     <div className="min-h-screen p-8">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section */}
-        <div className="glass-strong rounded-3xl p-8 mb-8 relative overflow-hidden">
-          <div className="absolute inset-0 peach-gradient opacity-10" />
-          <div className="relative z-10">
+        <div className="bg-white border border-gray-200 rounded-3xl p-8 mb-8 shadow-lg">
+          <div>
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 rounded-2xl bg-primary/20">
                 <Sparkles className="w-8 h-8 text-primary" />
@@ -94,7 +93,7 @@ const TodayNewsletters = () => {
           {/* 메인 콘텐츠 */}
           <div className="lg:col-span-3 space-y-6">
             {/* 네비게이션 및 컨트롤 */}
-            <div className="glass-strong rounded-3xl p-6">
+            <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-lg">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
                 <div className="flex items-center gap-2">
                   <button
@@ -135,7 +134,7 @@ const TodayNewsletters = () => {
                     placeholder="제목으로 검색하세요..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-12 bg-white/70 border-primary/20 rounded-2xl h-12 text-base focus:ring-2 focus:ring-primary/30"
+                    className="pl-12 bg-white border-gray-200 rounded-2xl h-12 text-base focus:ring-2 focus:ring-primary/30"
                   />
                 </div>
                 <div className="flex gap-3">
@@ -146,7 +145,7 @@ const TodayNewsletters = () => {
                     className={`rounded-2xl px-6 h-12 font-medium transition-all duration-300 ${
                       filterRead === 'all' 
                         ? 'peach-gradient text-white shadow-lg' 
-                        : 'bg-white/70 hover:bg-primary/10 border-primary/20'
+                        : 'bg-white hover:bg-primary/10 border-gray-200'
                     }`}
                   >
                     <Filter className="w-4 h-4 mr-2" />
@@ -159,7 +158,7 @@ const TodayNewsletters = () => {
                     className={`rounded-2xl px-6 h-12 font-medium transition-all duration-300 ${
                       filterRead === 'unread' 
                         ? 'peach-gradient text-white shadow-lg' 
-                        : 'bg-white/70 hover:bg-primary/10 border-primary/20'
+                        : 'bg-white hover:bg-primary/10 border-gray-200'
                     }`}
                   >
                     <TrendingUp className="w-4 h-4 mr-2" />
@@ -172,7 +171,7 @@ const TodayNewsletters = () => {
                     className={`rounded-2xl px-6 h-12 font-medium transition-all duration-300 ${
                       filterRead === 'read' 
                         ? 'peach-gradient text-white shadow-lg' 
-                        : 'bg-white/70 hover:bg-primary/10 border-primary/20'
+                        : 'bg-white hover:bg-primary/10 border-gray-200'
                     }`}
                   >
                     읽음 ({readCount})
@@ -201,7 +200,7 @@ const TodayNewsletters = () => {
                     />
                   ))
               ) : (
-                <div className="floating-card rounded-3xl p-16 text-center">
+                <div className="bg-white border border-gray-200 rounded-3xl p-16 text-center shadow-lg">
                   <div className="p-6 rounded-3xl bg-primary/10 w-fit mx-auto mb-6">
                     <Mail className="w-16 h-16 text-primary/60" />
                   </div>

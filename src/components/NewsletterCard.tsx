@@ -29,17 +29,14 @@ const NewsletterCard = ({
   return (
     <div
       className={`floating-card rounded-3xl p-6 cursor-pointer group relative overflow-hidden ${
-        !isRead ? 'ring-2 ring-primary/30 shadow-xl' : 'opacity-80'
+        !isRead ? 'ring-2 ring-primary/30 shadow-xl' : 'opacity-70'
       }`}
       onClick={onClick}
     >
-      {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      <div className="flex gap-6 relative z-10">
+      <div className="flex gap-6">
         {/* 썸네일 - 더 큰 가로 직사각형, 박스 높이에 맞게 조정 */}
         <div className="flex-shrink-0">
-          <div className="w-36 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 organic-shadow">
+          <div className="w-36 h-24 rounded-2xl overflow-hidden bg-gray-100 shadow-md">
             {thumbnail ? (
               <img 
                 src={`https://images.unsplash.com/${thumbnail}?w=288&h=192&fit=crop&crop=center`} 
@@ -47,8 +44,8 @@ const NewsletterCard = ({
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             ) : (
-              <div className="w-full h-full coral-gradient flex items-center justify-center">
-                <BookOpen className="w-8 h-8 text-white/80" />
+              <div className="w-full h-full bg-primary flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-white" />
               </div>
             )}
           </div>

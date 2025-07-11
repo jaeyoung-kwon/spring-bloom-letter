@@ -34,10 +34,10 @@ const UserProfile = ({
   return (
     <div className="space-y-6">
       {/* 사용자 정보 */}
-      <div className="floating-card rounded-3xl p-6">
+      <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-lg">
         <div className="flex items-center gap-4 mb-6">
           <div className="relative">
-            <div className="w-16 h-16 rounded-2xl peach-gradient flex items-center justify-center text-white text-xl font-bold shadow-lg">
+            <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white text-xl font-bold shadow-lg">
               {profileImage ? (
                 <img src={profileImage} alt={name} className="w-full h-full rounded-2xl object-cover" />
               ) : (
@@ -55,18 +55,18 @@ const UserProfile = ({
         </div>
         
         <div 
-          className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl cursor-pointer hover:from-primary/15 hover:to-accent/15 transition-all duration-300 micro-interaction"
+          className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-gray-100 transition-all duration-300"
           onClick={handleCopyEmail}
         >
           <span className="text-sm text-foreground/80 flex-1 font-medium">{email}</span>
-          <div className="p-2 rounded-xl bg-white/50 hover:bg-white/70 transition-colors">
+          <div className="p-2 rounded-xl bg-white hover:bg-gray-50 transition-colors border border-gray-200">
             <Copy className="w-4 h-4 text-primary" />
           </div>
         </div>
       </div>
 
       {/* 읽기 현황 */}
-      <div className="floating-card rounded-3xl p-6">
+      <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-lg">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-xl bg-primary/20">
             <TrendingUp className="w-5 h-5 text-primary" />
@@ -82,13 +82,13 @@ const UserProfile = ({
             </div>
             <div className="w-full bg-muted/50 rounded-full h-3 overflow-hidden">
               <div 
-                className="h-3 rounded-full peach-gradient transition-all duration-700 ease-out organic-shadow"
+                className="h-3 rounded-full bg-primary transition-all duration-700 ease-out shadow-sm"
                 style={{ width: `${todayProgress}%` }}
               />
             </div>
           </div>
           
-          <div className="p-4 bg-gradient-to-r from-accent/10 to-primary/10 rounded-2xl">
+          <div className="p-4 bg-gray-50 rounded-2xl">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm text-foreground/70 font-medium">주간 목표</span>
               <span className="text-lg font-bold text-foreground">{weeklyGoal}개</span>
@@ -102,7 +102,7 @@ const UserProfile = ({
       </div>
 
       {/* 연속 읽기 잔디 */}
-      <div className="floating-card rounded-3xl p-6">
+      <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-lg">
         <ReadingStreak streak={streak} />
       </div>
     </div>
