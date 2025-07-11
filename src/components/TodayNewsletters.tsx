@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, Filter, Mail, Archive } from 'lucide-react';
+import { Search, Mail, Archive } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +21,7 @@ const TodayNewsletters = () => {
       category: "기술",
       publishTime: "2시간 전",
       readTime: "5분",
+      thumbnail: "photo-1518770660439-4636190af475",
       isRead: false
     },
     {
@@ -31,6 +32,7 @@ const TodayNewsletters = () => {
       category: "건강",
       publishTime: "3시간 전",
       readTime: "3분",
+      thumbnail: "photo-1581091226825-a6a2a5aee158",
       isRead: true
     },
     {
@@ -41,6 +43,7 @@ const TodayNewsletters = () => {
       category: "비즈니스",
       publishTime: "4시간 전",
       readTime: "7분",
+      thumbnail: "photo-1488590528505-98d2b5aba04b",
       isRead: false
     },
     {
@@ -51,6 +54,7 @@ const TodayNewsletters = () => {
       category: "문화",
       publishTime: "5시간 전",
       readTime: "4분",
+      thumbnail: "photo-1649972904349-6e44c42644a7",
       isRead: false
     }
   ];
@@ -65,6 +69,7 @@ const TodayNewsletters = () => {
   });
 
   const unreadCount = mockNewsletters.filter(n => !n.isRead).length;
+  const readCount = mockNewsletters.filter(n => n.isRead).length;
 
   return (
     <div className="min-h-screen p-6">
@@ -124,7 +129,7 @@ const TodayNewsletters = () => {
                     onClick={() => setFilterRead('all')}
                     className="rounded-xl"
                   >
-                    전체
+                    전체 ({mockNewsletters.length})
                   </Button>
                   <Button
                     variant={filterRead === 'unread' ? 'default' : 'outline'}
@@ -132,7 +137,7 @@ const TodayNewsletters = () => {
                     onClick={() => setFilterRead('unread')}
                     className="rounded-xl"
                   >
-                    읽지 않음
+                    읽지 않음 ({unreadCount})
                   </Button>
                   <Button
                     variant={filterRead === 'read' ? 'default' : 'outline'}
@@ -140,7 +145,7 @@ const TodayNewsletters = () => {
                     onClick={() => setFilterRead('read')}
                     className="rounded-xl"
                   >
-                    읽음
+                    읽음 ({readCount})
                   </Button>
                 </div>
               </div>
@@ -160,6 +165,7 @@ const TodayNewsletters = () => {
                       category={newsletter.category}
                       publishTime={newsletter.publishTime}
                       readTime={newsletter.readTime}
+                      thumbnail={newsletter.thumbnail}
                       isRead={newsletter.isRead}
                       onClick={() => console.log('Navigate to newsletter:', newsletter.id)}
                     />

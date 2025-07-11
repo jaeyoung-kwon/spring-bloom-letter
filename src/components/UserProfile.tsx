@@ -1,8 +1,8 @@
 
 import React from 'react';
-import { Copy, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Copy } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import ReadingStreak from './ReadingStreak';
 
 interface UserProfileProps {
   name: string;
@@ -65,14 +65,6 @@ const UserProfile = ({
         <div className="space-y-4">
           <div>
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-600">연속 읽기</span>
-              <span className="text-lg font-bold text-green-600">{streak}일</span>
-            </div>
-            <div className="text-xs text-gray-500">🔥 계속 이어가세요!</div>
-          </div>
-          
-          <div>
-            <div className="flex justify-between items-center mb-2">
               <span className="text-sm text-gray-600">오늘의 진행률</span>
               <span className="text-sm font-medium text-gray-900">{todayProgress}%</span>
             </div>
@@ -94,13 +86,9 @@ const UserProfile = ({
         </div>
       </div>
 
-      {/* 빠른 실행 */}
+      {/* 연속 읽기 잔디 */}
       <div className="glass-strong rounded-2xl p-6">
-        <h3 className="font-semibold text-lg mb-4 text-gray-900">빠른 실행</h3>
-        <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl">
-          <Plus className="w-4 h-4 mr-2" />
-          뉴스레터 추가하기
-        </Button>
+        <ReadingStreak streak={streak} />
       </div>
     </div>
   );
