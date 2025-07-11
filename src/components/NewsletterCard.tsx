@@ -37,18 +37,18 @@ const NewsletterCard = ({
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="flex gap-6 relative z-10">
-        {/* 썸네일 - 가로 직사각형 */}
+        {/* 썸네일 - 더 큰 가로 직사각형, 박스 높이에 맞게 조정 */}
         <div className="flex-shrink-0">
-          <div className="w-28 h-20 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 organic-shadow">
+          <div className="w-36 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 organic-shadow">
             {thumbnail ? (
               <img 
-                src={`https://images.unsplash.com/${thumbnail}?w=224&h=160&fit=crop&crop=center`} 
+                src={`https://images.unsplash.com/${thumbnail}?w=288&h=192&fit=crop&crop=center`} 
                 alt={title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
-                <BookOpen className="w-8 h-8 text-primary/60" />
+              <div className="w-full h-full coral-gradient flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-white/80" />
               </div>
             )}
           </div>
