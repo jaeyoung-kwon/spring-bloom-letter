@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Clock, Star, BookOpen } from 'lucide-react';
+import { Clock, Star, BookOpen, Sparkles } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface NewsletterCardProps {
@@ -28,24 +28,27 @@ const NewsletterCard = ({
 }: NewsletterCardProps) => {
   return (
     <div
-      className={`glass-card rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl group ${
-        !isRead ? 'ring-2 ring-green-200' : ''
+      className={`floating-card rounded-3xl p-6 cursor-pointer group relative overflow-hidden ${
+        !isRead ? 'ring-2 ring-primary/30 shadow-xl' : 'opacity-80'
       }`}
       onClick={onClick}
     >
-      <div className="flex gap-4">
-        {/* 썸네일 */}
+      {/* Decorative gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="flex gap-6 relative z-10">
+        {/* 썸네일 - 가로 직사각형 */}
         <div className="flex-shrink-0">
-          <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100">
+          <div className="w-28 h-20 rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 organic-shadow">
             {thumbnail ? (
               <img 
-                src={`https://images.unsplash.com/${thumbnail}?w=120&h=120&fit=crop&crop=center`} 
+                src={`https://images.unsplash.com/${thumbnail}?w=224&h=160&fit=crop&crop=center`} 
                 alt={title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-gray-400" />
+              <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
+                <BookOpen className="w-8 h-8 text-primary/60" />
               </div>
             )}
           </div>
@@ -53,41 +56,64 @@ const NewsletterCard = ({
 
         {/* 콘텐츠 */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between mb-3">
+          <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <Badge variant="secondary" className="bg-green-100/80 text-green-700 text-xs px-2 py-1">
+              <div className="flex items-center gap-3 mb-3">
+                <Badge 
+                  variant="secondary" 
+                  className="bg-primary/10 text-primary border-primary/20 text-xs px-3 py-1.5 rounded-full font-medium"
+                >
                   {category}
                 </Badge>
                 {!isRead && (
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse" />
+                    <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                  </div>
                 )}
               </div>
-              <h3 className={`font-semibold text-lg leading-tight mb-2 group-hover:text-green-700 transition-colors ${
-                !isRead ? 'text-gray-900' : 'text-gray-600'
+              <h3 className={`font-bold text-xl leading-tight mb-3 group-hover:text-primary transition-colors duration-300 ${
+                !isRead ? 'text-foreground' : 'text-muted-foreground'
               }`}>
                 {title}
               </h3>
-              <p className="text-sm text-gray-500 mb-1">{publisher}</p>
+              <p className="text-sm text-primary/80 font-medium mb-2">{publisher}</p>
             </div>
-            <Star className={`w-5 h-5 transition-colors ${isRead ? 'text-gray-300' : 'text-yellow-400'}`} />
+            <div className="flex items-center gap-2">
+              <div className={`p-2 rounded-full transition-colors duration-300 ${
+                isRead ? 'bg-muted/50' : 'bg-primary/10'
+              }`}>
+                <Star className={`w-5 h-5 transition-colors duration-300 ${
+                  isRead ? 'text-muted-foreground' : 'text-primary fill-primary/20'
+                }`} />
+              </div>
+            </div>
           </div>
           
-          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+          <p className="text-foreground/70 text-sm leading-relaxed mb-5 line-clamp-2">
             {preview}
           </p>
           
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {publishTime}
-              </span>
-              <span className="flex items-center gap-1">
-                <BookOpen className="w-3 h-3" />
-                {readTime}
-              </span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-6 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2 micro-interaction">
+                <div className="p-1.5 rounded-full bg-primary/10">
+                  <Clock className="w-3 h-3 text-primary" />
+                </div>
+                <span className="font-medium">{publishTime}</span>
+              </div>
+              <div className="flex items-center gap-2 micro-interaction">
+                <div className="p-1.5 rounded-full bg-accent/20">
+                  <BookOpen className="w-3 h-3 text-accent-foreground" />
+                </div>
+                <span className="font-medium">{readTime}</span>
+              </div>
             </div>
+            {!isRead && (
+              <div className="px-3 py-1.5 bg-primary/10 rounded-full text-xs font-medium text-primary border border-primary/20">
+                새로운 글
+              </div>
+            )}
           </div>
         </div>
       </div>

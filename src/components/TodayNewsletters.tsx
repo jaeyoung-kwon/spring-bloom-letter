@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, Mail, Archive } from 'lucide-react';
+import { Search, Mail, Archive, Filter, Sparkles, TrendingUp } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -72,40 +72,56 @@ const TodayNewsletters = () => {
   const readCount = mockNewsletters.filter(n => n.isRead).length;
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Hero Section */}
+        <div className="glass-strong rounded-3xl p-8 mb-8 relative overflow-hidden">
+          <div className="absolute inset-0 peach-gradient opacity-10" />
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 rounded-2xl bg-primary/20">
+                <Sparkles className="w-8 h-8 text-primary" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-foreground mb-2">오늘의 새로운 발견</h1>
+                <p className="text-muted-foreground text-lg">당신만을 위한 큐레이션된 콘텐츠</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* 메인 콘텐츠 */}
-          <div className="lg:col-span-3">
-            {/* 헤더 */}
-            <div className="glass-strong rounded-2xl p-6 mb-6">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
-                <div className="flex items-center gap-6">
+          <div className="lg:col-span-3 space-y-6">
+            {/* 네비게이션 및 컨트롤 */}
+            <div className="glass-strong rounded-3xl p-6">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-6">
+                <div className="flex items-center gap-2">
                   <button
-                    className={`px-4 py-2 rounded-xl font-medium transition-all ${
+                    className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-3 ${
                       activeTab === 'today'
-                        ? 'bg-green-500 text-white shadow-lg'
-                        : 'text-gray-600 hover:text-green-600'
+                        ? 'peach-gradient text-white shadow-lg transform scale-105'
+                        : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
                     }`}
                     onClick={() => setActiveTab('today')}
                   >
-                    <Mail className="w-4 h-4 inline mr-2" />
+                    <Mail className="w-5 h-5" />
                     오늘의 뉴스레터
                     {unreadCount > 0 && (
-                      <Badge className="ml-2 bg-red-500 text-white text-xs px-2 py-1">
+                      <Badge className="bg-white/90 text-primary text-xs px-2 py-1 ml-1">
                         {unreadCount}
                       </Badge>
                     )}
                   </button>
                   <button
-                    className={`px-4 py-2 rounded-xl font-medium transition-all ${
+                    className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-3 ${
                       activeTab === 'archive'
-                        ? 'bg-green-500 text-white shadow-lg'
-                        : 'text-gray-600 hover:text-green-600'
+                        ? 'peach-gradient text-white shadow-lg transform scale-105'
+                        : 'text-muted-foreground hover:text-primary hover:bg-primary/10'
                     }`}
                     onClick={() => setActiveTab('archive')}
                   >
-                    <Archive className="w-4 h-4 inline mr-2" />
+                    <Archive className="w-5 h-5" />
                     뉴스레터 보관함
                   </button>
                 </div>
@@ -114,36 +130,50 @@ const TodayNewsletters = () => {
               {/* 검색 및 필터 */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-primary/60" />
                   <Input
                     placeholder="제목으로 검색하세요..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 bg-white/50 border-white/30 rounded-xl"
+                    className="pl-12 bg-white/70 border-primary/20 rounded-2xl h-12 text-base focus:ring-2 focus:ring-primary/30"
                   />
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   <Button
                     variant={filterRead === 'all' ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setFilterRead('all')}
-                    className="rounded-xl"
+                    className={`rounded-2xl px-6 h-12 font-medium transition-all duration-300 ${
+                      filterRead === 'all' 
+                        ? 'peach-gradient text-white shadow-lg' 
+                        : 'bg-white/70 hover:bg-primary/10 border-primary/20'
+                    }`}
                   >
+                    <Filter className="w-4 h-4 mr-2" />
                     전체 ({mockNewsletters.length})
                   </Button>
                   <Button
                     variant={filterRead === 'unread' ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setFilterRead('unread')}
-                    className="rounded-xl"
+                    className={`rounded-2xl px-6 h-12 font-medium transition-all duration-300 ${
+                      filterRead === 'unread' 
+                        ? 'peach-gradient text-white shadow-lg' 
+                        : 'bg-white/70 hover:bg-primary/10 border-primary/20'
+                    }`}
                   >
+                    <TrendingUp className="w-4 h-4 mr-2" />
                     읽지 않음 ({unreadCount})
                   </Button>
                   <Button
                     variant={filterRead === 'read' ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setFilterRead('read')}
-                    className="rounded-xl"
+                    className={`rounded-2xl px-6 h-12 font-medium transition-all duration-300 ${
+                      filterRead === 'read' 
+                        ? 'peach-gradient text-white shadow-lg' 
+                        : 'bg-white/70 hover:bg-primary/10 border-primary/20'
+                    }`}
                   >
                     읽음 ({readCount})
                   </Button>
@@ -152,7 +182,7 @@ const TodayNewsletters = () => {
             </div>
 
             {/* 뉴스레터 목록 */}
-            <div className="space-y-4">
+            <div className="space-y-6">
               {filteredNewsletters.length > 0 ? (
                 filteredNewsletters
                   .sort((a, b) => (a.isRead ? 1 : 0) - (b.isRead ? 1 : 0))
@@ -171,10 +201,12 @@ const TodayNewsletters = () => {
                     />
                   ))
               ) : (
-                <div className="glass-card rounded-2xl p-12 text-center">
-                  <Mail className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-600 mb-2">검색 결과가 없습니다</h3>
-                  <p className="text-gray-500">다른 검색어로 시도해보세요.</p>
+                <div className="floating-card rounded-3xl p-16 text-center">
+                  <div className="p-6 rounded-3xl bg-primary/10 w-fit mx-auto mb-6">
+                    <Mail className="w-16 h-16 text-primary/60" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-3">검색 결과가 없습니다</h3>
+                  <p className="text-muted-foreground text-lg">다른 검색어로 시도해보세요.</p>
                 </div>
               )}
             </div>

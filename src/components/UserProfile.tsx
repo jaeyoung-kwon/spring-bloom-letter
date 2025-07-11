@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Copy } from 'lucide-react';
+import { Copy, Sparkles, TrendingUp } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import ReadingStreak from './ReadingStreak';
 
@@ -26,7 +26,7 @@ const UserProfile = ({
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
     toast({
-      title: "이메일이 복사되었습니다!",
+      title: "이메일이 복사되었습니다! ✨",
       description: email,
     });
   };
@@ -34,60 +34,75 @@ const UserProfile = ({
   return (
     <div className="space-y-6">
       {/* 사용자 정보 */}
-      <div className="glass-strong rounded-2xl p-6">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-xl font-bold">
-            {profileImage ? (
-              <img src={profileImage} alt={name} className="w-full h-full rounded-full object-cover" />
-            ) : (
-              name.charAt(0).toUpperCase()
-            )}
+      <div className="floating-card rounded-3xl p-6">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="relative">
+            <div className="w-16 h-16 rounded-2xl peach-gradient flex items-center justify-center text-white text-xl font-bold shadow-lg">
+              {profileImage ? (
+                <img src={profileImage} alt={name} className="w-full h-full rounded-2xl object-cover" />
+              ) : (
+                name.charAt(0).toUpperCase()
+              )}
+            </div>
+            <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+              <Sparkles className="w-3 h-3 text-white" />
+            </div>
           </div>
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">{name}</h2>
-            <p className="text-sm text-gray-600">{greeting}</p>
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-foreground mb-1">{name}</h2>
+            <p className="text-sm text-primary font-medium">{greeting}</p>
           </div>
         </div>
         
         <div 
-          className="flex items-center gap-2 p-3 bg-gray-50/80 rounded-lg cursor-pointer hover:bg-gray-100/80 transition-colors"
+          className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl cursor-pointer hover:from-primary/15 hover:to-accent/15 transition-all duration-300 micro-interaction"
           onClick={handleCopyEmail}
         >
-          <span className="text-sm text-gray-600 flex-1">{email}</span>
-          <Copy className="w-4 h-4 text-gray-500" />
+          <span className="text-sm text-foreground/80 flex-1 font-medium">{email}</span>
+          <div className="p-2 rounded-xl bg-white/50 hover:bg-white/70 transition-colors">
+            <Copy className="w-4 h-4 text-primary" />
+          </div>
         </div>
       </div>
 
       {/* 읽기 현황 */}
-      <div className="glass-strong rounded-2xl p-6">
-        <h3 className="font-semibold text-lg mb-4 text-gray-900">읽기 현황</h3>
+      <div className="floating-card rounded-3xl p-6">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 rounded-xl bg-primary/20">
+            <TrendingUp className="w-5 h-5 text-primary" />
+          </div>
+          <h3 className="font-bold text-lg text-foreground">읽기 현황</h3>
+        </div>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-600">오늘의 진행률</span>
-              <span className="text-sm font-medium text-gray-900">{todayProgress}%</span>
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-sm text-muted-foreground font-medium">오늘의 진행률</span>
+              <span className="text-lg font-bold text-primary">{todayProgress}%</span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-muted/50 rounded-full h-3 overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full transition-all duration-300"
+                className="h-3 rounded-full peach-gradient transition-all duration-700 ease-out organic-shadow"
                 style={{ width: `${todayProgress}%` }}
-              ></div>
+              />
             </div>
           </div>
           
-          <div>
+          <div className="p-4 bg-gradient-to-r from-accent/10 to-primary/10 rounded-2xl">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-600">주간 목표</span>
-              <span className="text-sm font-medium text-gray-900">{weeklyGoal}개</span>
+              <span className="text-sm text-foreground/70 font-medium">주간 목표</span>
+              <span className="text-lg font-bold text-foreground">{weeklyGoal}개</span>
             </div>
-            <div className="text-xs text-gray-500">이번 주 목표까지 화이팅! 💪</div>
+            <div className="text-xs text-primary font-medium flex items-center gap-1">
+              <Sparkles className="w-3 h-3" />
+              이번 주 목표까지 화이팅! 💪
+            </div>
           </div>
         </div>
       </div>
 
       {/* 연속 읽기 잔디 */}
-      <div className="glass-strong rounded-2xl p-6">
+      <div className="floating-card rounded-3xl p-6">
         <ReadingStreak streak={streak} />
       </div>
     </div>
