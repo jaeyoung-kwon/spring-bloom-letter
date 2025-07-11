@@ -28,8 +28,8 @@ const NewsletterCard = ({
 }: NewsletterCardProps) => {
   return (
     <div
-      className={`floating-card rounded-3xl p-6 cursor-pointer group relative overflow-hidden ${
-        !isRead ? 'ring-2 ring-primary/30 shadow-xl' : 'opacity-70'
+      className={`bg-white rounded-3xl p-6 cursor-pointer group relative overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 ${
+        !isRead ? 'shadow-md' : 'opacity-70'
       }`}
       onClick={onClick}
     >
