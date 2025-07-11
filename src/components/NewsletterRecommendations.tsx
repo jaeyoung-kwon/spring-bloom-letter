@@ -80,9 +80,10 @@ const NewsletterRecommendations = () => {
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
         {/* 헤더 배너 */}
-        <div className="glass-strong rounded-2xl p-8 mb-8 text-center bg-gradient-to-r from-green-400/20 via-blue-400/20 to-purple-400/20">
-          <div className="max-w-2xl mx-auto">
-            <Star className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
+        <div className="glass-strong rounded-2xl p-8 mb-8 text-center relative overflow-hidden">
+          <div className="absolute inset-0 coral-gradient opacity-10"></div>
+          <div className="max-w-2xl mx-auto relative z-10">
+            <Star className="w-12 h-12 text-primary mx-auto mb-4" />
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
               새로운 뉴스레터를 발견해보세요 ✨
             </h1>
@@ -90,7 +91,7 @@ const NewsletterRecommendations = () => {
               당신의 관심사에 맞는 고품질 뉴스레터를 추천해드립니다
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-              <TrendingUp className="w-4 h-4" />
+              <TrendingUp className="w-4 h-4 text-primary" />
               매주 새로운 추천 뉴스레터가 업데이트됩니다
             </div>
           </div>
@@ -104,10 +105,10 @@ const NewsletterRecommendations = () => {
                 key={category}
                 variant={activeCategory === category ? 'default' : 'outline'}
                 onClick={() => setActiveCategory(category)}
-                className={`rounded-xl px-6 py-2 transition-all ${
+                className={`rounded-xl px-6 py-2 transition-all font-semibold ${
                   activeCategory === category
-                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg'
-                    : 'bg-white/50 hover:bg-white/80 text-gray-700'
+                    ? 'coral-gradient text-white shadow-lg hover:shadow-xl'
+                    : 'bg-white/50 hover:bg-primary/10 text-gray-700 hover:text-primary border-primary/20'
                 }`}
               >
                 {category}
@@ -135,7 +136,7 @@ const NewsletterRecommendations = () => {
 
         {filteredRecommendations.length === 0 && (
           <div className="glass-card rounded-2xl p-12 text-center">
-            <Star className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <Star className="w-16 h-16 text-primary/30 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-600 mb-2">
               해당 카테고리의 추천 뉴스레터가 없습니다
             </h3>

@@ -30,7 +30,7 @@ const RecommendationCard = ({
   return (
     <div className="glass-card rounded-2xl overflow-hidden hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl group">
       {/* 이미지 영역 */}
-      <div className="h-40 bg-gradient-to-br from-green-400 via-blue-400 to-purple-400 relative overflow-hidden">
+      <div className="h-40 coral-gradient relative overflow-hidden">
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
         ) : (
@@ -41,7 +41,7 @@ const RecommendationCard = ({
           </div>
         )}
         <div className="absolute top-3 left-3">
-          <Badge className="bg-white/90 text-gray-700 text-xs">
+          <Badge className="bg-white/90 text-primary text-xs font-medium">
             {category}
           </Badge>
         </div>
@@ -53,10 +53,10 @@ const RecommendationCard = ({
 
       {/* 콘텐츠 영역 */}
       <div className="p-6">
-        <h3 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-green-700 transition-colors">
+        <h3 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors">
           {title}
         </h3>
-        <p className="text-sm text-gray-500 mb-3">{publisher}</p>
+        <p className="text-sm text-primary/80 mb-3 font-medium">{publisher}</p>
         <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
           {description}
         </p>
@@ -74,7 +74,7 @@ const RecommendationCard = ({
 
         <Button 
           onClick={onSubscribe}
-          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl"
+          className="w-full coral-gradient hover:shadow-lg text-white rounded-xl font-semibold transition-all duration-300"
         >
           구독하기
         </Button>
